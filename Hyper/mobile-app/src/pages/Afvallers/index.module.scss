@@ -1,0 +1,38 @@
+.underline {
+  height: 1px;
+  background-color: #47642e;
+  opacity: 0.1;
+  width: 100%;
+  border: none;
+  margin-top: 0;
+}
+
+.componentsHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.componentBody {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  font-family: Avenir;
+}
+
+.id {
+  font-weight: 500;
+}
+
+.amount {
+  color: red;
+}
+
+.row {
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(174, 185, 230, 0.2);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 10px;
+}

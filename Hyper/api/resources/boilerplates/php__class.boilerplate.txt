@@ -1,0 +1,17 @@
+{
+   "name": "PHP Class in 'app' Directory",
+   "out": "app/Src/{{ $name }}.php",
+   "params": {
+       "extends": "optional",
+       "implements": "optional"
+   }
+}
+---
+<?php
+
+namespace {{ Format::getNamespace($path) }};
+
+class {{ Format::baseName($name) }} @if($extends)extends {{ $extends }}@endif @if($implements) implements {{$implements}} @endif
+{
+
+}

@@ -1,0 +1,82 @@
+.employee-detail-block {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	flex-direction: column;
+
+	.employee-detail-header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		height: 40px;
+		margin-bottom: 10px;
+		justify-content: space-between;
+
+		.button-group {
+			display: flex;
+			flex-direction: row;
+
+			button:first-child {
+				margin-right: 20px;
+			}
+
+			button {
+				padding: 1.5rem 35px !important;
+				height: 100% !important;
+				margin-left: .5rem;
+			}
+		}
+		
+		h1 {
+			font-weight: 400;
+			font-size: 26px;
+
+		}
+	}
+
+	&__tab {
+		background: #fff;
+		border-radius: 8px;
+		padding: 20px 20px 0;
+		display: flex;
+		flex-direction: column;
+		margin-top: 10px;
+		justify-content: center;
+
+		h2 {
+			margin: 0 0 20px;
+			font-size: 18px;
+		}
+
+		.input-block {
+			margin-left: 20px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+
+		.tab-row {
+			display: flex;
+			flex-direction: row;
+		}
+
+		.tab-col {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	.projectTag {
+		background: rgba(71, 100, 46, 0.1);
+		padding: 10px 15px;
+		border-radius: 8px;
+		margin-right: 10px;
+		color: #47642E;
+		font-size: 14px;
+		font-weight: 500;
+		display: inline-block;
+		margin-bottom: 20px;
+		cursor: pointer;
+	}
+}

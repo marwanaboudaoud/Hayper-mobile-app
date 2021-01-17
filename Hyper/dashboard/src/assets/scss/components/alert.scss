@@ -1,0 +1,20 @@
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 2.5rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+
+    &__danger {
+        padding: 1.25rem 3rem;
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+    &__success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;  
+    }
+}

@@ -1,0 +1,242 @@
+stages:
+  - lint
+  - build
+  - test
+  - deploy
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - vendor/
+
+build_api:
+  tags:
+    - DIGITALOCEAN
+    - HYPER
+    - TESTRUNNER
+  stage: build
+  image:
+    name: composer:latest
+    entrypoint: [""]
+  script:
+    - apk update && apk add libpng-dev
+    - apk update && apk add libpng-dev
+    - docker-php-ext-install gd
+    - apk add --no-cache libzip-dev && apk add --no-cache libxml2-dev && docker-php-ext-configure zip --with-libzip=/usr/include && docker-php-ext-install zip
+    - docker-php-ext-install soap
+    - ./build/src/build-api.sh
+  artifacts:
+    paths:
+      - ./build
+build_staging_dashboard:
+  tags:
+    - DIGITALOCEAN
+    - HYPER
+    - TESTRUNNER
+  stage: build
+  only:
+    refs:
+      - develop
+  image: node:10
+  variables:
+    REACT_APP_API_HOST: "$API_HOST"
+    REACT_APP_HOST: "$DASHBOARD_HOST"
+  environment:
+    name: staging
+  script:
+    - echo "$API_HOST"
+    - ./build/src/build-dashboard.sh
+  artifacts:
+    paths:
+      - ./build
+build_accept_dashboard:
+  tags:
+    - DIGITALOCEAN
+    - HYPER
+    - TESTRUNNER
+  stage: build
+  only:
+    refs:
+      - tags
+  image: node:10
+  variables:
+    REACT_APP_API_HOST: "$API_HOST"
+    REACT_APP_HOST: "$DASHBOARD_HOST"
+  environment:
+    name: accept
+  script:
+    - echo "$API_HOST"
+    - ./build/src/build-dashboard.sh
+  artifacts:
+    paths:
+      - ./build
+build_prod_dashboard:
+  tags:
+    - DIGITALOCEAN
+    - HYPER
+    - TESTRUNNER
+  stage: build
+  only:
+    refs:
+      - tags
+  image: node:10
+  variables:
+    REACT_APP_API_HOST: "$API_HOST"
+    REACT_APP_HOST: "$DASHBOARD_HOST"
+  environment:
+    name: accept
+  script:
+    - echo "$API_HOST"
+    - ./build/src/build-dashboard.sh
+  artifacts:
+    paths:
+      - ./build
+build_staging_app:
+  tags:
+    - DIGITALOCEAN
+    - HYPER
+    - TESTRUNNER
+  stage: build
+  only:
+    refs:
+      - develop
+  image: node:10
+  variables:
+    REACT_APP_API_HOST: "$API_HOST"
+    REACT_APP_HOST: "$DASHBOARD_HOST"
+  environment:
+    name: staging
+  script:
+    - echo "$API_HOST"
+    - ./build/src/build-app.sh
+  artifacts:
+    paths:
+      - ./build
+build_accept_app:
+  tags:
+    - DIGITALOCEAN
+    - HYPER
+    - TESTRUNNER
+  stage: build
+  only:
+    refs:
+      - tags
+  image: node:10
+  variables:
+    REACT_APP_API_HOST: "$API_HOST"
+    REACT_APP_HOST: "$DASHBOARD_HOST"
+  environment:
+    name: accept
+  script:
+    - echo "$API_HOST"
+    - ./build/src/build-app.sh
+  artifacts:
+    paths:
+      - ./build
+build_prod_app:
+  tags:
+    - DIGITALOCEAN
+    - HYPER
+    - TESTRUNNER
+  stage: build
+  only:
+    refs:
+      - tags
+  image: node:10
+  variables:
+    REACT_APP_API_HOST: "$API_HOST"
+    REACT_APP_HOST: "$DASHBOARD_HOST"
+  environment:
+    name: accept
+  script:
+    - echo "$API_HOST"
+    - ./build/src/build-app.sh
+  artifacts:
+    paths:
+      - ./build
+test_api:
+  tags:
+    - DIGITALOCEAN
+    - HYPER
+    - TESTRUNNER
+  stage: test
+  image:
+    name: composer:latest
+    entrypoint: [""]
+  script:
+    - cd build/api
+    - vendor/bin/phpunit tests/Unit
+  artifacts:
+    paths:
+      - ./build
+deploy_staging:
+  stage: deploy
+  only:
+    refs:
+      - develop
+  when: manual
+  tags:
+    - DIGITALOCEAN
+    - HYPER
+    - TESTRUNNER
+  script:
+    - apk add zip
+    - zip -r build.zip ./build
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apk add openssh-client )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - scp -o stricthostkeychecking=no -r build.zip root@"$SSH_HOST":/var/www/hyper/staging/
+    - ssh root@"$SSH_HOST" "unzip -qq /var/www/hyper/staging/build.zip -d /var/www/hyper/staging/releases/$(date +%Y%m%d_%H%M%S) ; sh /var/www/hyper/staging/symlinker.sh ; sudo chown -R www-data:www-data /var/www/hyper/staging/current/build/api ; ln -sf /var/www/hyper/staging/shared/.env-laravel /var/www/hyper/staging/current/build/api/.env ; cd /var/www/hyper/production/current/build/api/ ; php artisan migrate ; sudo systemctl reload php7.2-fpm.service"
+  artifacts:
+    paths:
+      - ./build
+deploy_accept:
+  stage: deploy
+  only:
+    refs:
+      - tags
+  when: manual
+  tags:
+    - DIGITALOCEAN
+    - HYPER
+    - TESTRUNNER
+  script:
+    - apk add zip
+    - zip -r build.zip ./build
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apk add openssh-client )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - scp -o stricthostkeychecking=no -r build.zip root@"$SSH_HOST":/var/www/hyper/accept/
+    - ssh root@"$SSH_HOST" "unzip -qq /var/www/hyper/accept/build.zip -d /var/www/hyper/accept/releases/$(date +%Y%m%d_%H%M%S) ; sh /var/www/hyper/accept/symlinker.sh ; sudo chown -R www-data:www-data /var/www/hyper/accept/current/build/api ; ln -sf /var/www/hyper/accept/shared/.env-laravel /var/www/hyper/accept/current/build/api/.env ; cd /var/www/hyper/production/current/build/api/ ; php artisan migrate ; sudo systemctl reload php7.2-fpm.service"
+  artifacts:
+    paths:
+      - ./build
+deploy_prod:
+  stage: deploy
+  only:
+    refs:
+      - tags
+  when: manual
+  tags:
+    - DIGITALOCEAN
+    - HYPER
+    - TESTRUNNER
+  script:
+    - apk add zip
+    - zip -r build.zip ./build
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apk add openssh-client )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - scp -o stricthostkeychecking=no -r build.zip root@"$SSH_HOST":/var/www/hyper/production/
+    - ssh root@"$SSH_HOST" "unzip -qq /var/www/hyper/production/build.zip -d /var/www/hyper/production/releases/$(date +%Y%m%d_%H%M%S) ; sh /var/www/hyper/production/symlinker.sh ; sudo chown -R www-data:www-data /var/www/hyper/production/current/build/api ; ln -sf /var/www/hyper/production/shared/.env-laravel /var/www/hyper/production/current/build/api/.env ; cd /var/www/hyper/production/current/build/api/ ; php artisan migrate ;  sudo systemctl reload php7.2-fpm.service"
+  artifacts:
+    paths:
+      - ./build

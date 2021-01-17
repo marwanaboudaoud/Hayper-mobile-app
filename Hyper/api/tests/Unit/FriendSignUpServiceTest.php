@@ -1,0 +1,168 @@
+<?php
+//
+//
+//namespace Tests\Unit;
+//
+//
+//use App\Exceptions\Employee\EmployeeNotFoundException;
+//use App\Src\Models\Hyper\Address\AddressModel;
+//use App\Src\Models\Hyper\Declaration\DeclarationModel;
+//use App\Src\Models\Hyper\EmergencyContact\EmergencyContactModel;
+//use App\Src\Models\Hyper\Friend\FriendModel;
+//use App\Src\Models\Hyper\Partner\PartnerModel;
+//use App\Src\Models\Hyper\User\UserModel;
+//use App\Src\Repositories\Hyper\Address\IAddressRepository;
+//use App\Src\Repositories\Hyper\Declaration\IDeclarationMailRepository;
+//use App\Src\Repositories\Hyper\Friend\IFriendMailRepository;
+//use App\Src\Repositories\Hyper\Partner\IPartnerRepository;
+//use App\Src\Repositories\Hyper\User\IUserRepository;
+//use App\Src\Services\Hyper\Declaration\DeclarationUploadService;
+//use App\Src\Services\Hyper\Friend\FriendSignUpService;
+//use App\Src\Services\Hyper\Notify\IFriendSignUpNotifyService;
+//use App\Src\Services\Hyper\Partner\PartnerService;
+//use App\User;
+//use Carbon\Carbon;
+//use Illuminate\Support\Facades\Mail;
+//use Mockery as m;
+//use Tests\TestCase;
+//
+//class FriendSignUpServiceTest extends TestCase
+//{
+//    /**
+//     * @var UserModel
+//     */
+//    private $userModel;
+//
+//    /**
+//     * @var FriendModel
+//     */
+//    private $friendModel;
+//
+//    /**
+//     * @var IUserRepository
+//     */
+//    private $userRepository;
+//
+//    /**
+//     * @var IUserRepository
+//     */
+//    private $userRepositoryNotFound;
+//
+//    /**
+//     * @var IFriendSignUpNotifyService
+//     */
+//    private $signUpNotifyService;
+//
+//
+//    public function setUp(): void
+//    {
+//        $this->userModel = m::mock(UserModel::class, function ($mock) {
+//            $mock->shouldReceive('getId')
+//                ->andReturn(1);
+//
+//            $mock->shouldReceive('getNmbrsId')
+//                ->andReturn(1);
+//
+//            $mock->shouldReceive('getAlias')
+//                ->andReturn('rvw');
+//
+//            $mock->shouldReceive('getInitials')
+//                ->andReturn('r');
+//
+//            $mock->shouldReceive('getFirstName')
+//                ->andReturn('Ricky');
+//
+//            $mock->shouldReceive('getInsertion')
+//                ->andReturn('van');
+//
+//            $mock->shouldReceive('getLastname')
+//                ->andReturn('Waas');
+//
+//            $mock->shouldReceive('getPhone')
+//                ->andReturn('061234567');
+//
+//            $mock->shouldReceive('isHasDriversLicense')
+//                ->andReturn(true);
+//
+//            $mock->shouldReceive('getDateOfBirth')
+//                ->andReturn('2019-01-01');
+//
+//            $mock->shouldReceive('getCountryOfBirthId')
+//                ->andReturn(1);
+//
+//            $mock->shouldReceive('getNationalityId')
+//                ->andReturn(1);
+//
+//            $mock->shouldReceive('getMaritalStatusId')
+//                ->andReturn(1);
+//
+//            $mock->shouldReceive('getEmail')
+//                ->andReturn('2019-01-01');
+//
+//            $mock->shouldReceive('getPassword')
+//                ->andReturn('123456');
+//
+//            $mock->shouldReceive('isActive')
+//                ->andReturn(true);
+//
+//            $mock->shouldReceive('setFriend')
+//                ->andReturn($mock);
+//
+//            $mock->shouldReceive('getFriend')
+//                ->andReturn($this->friendModel);
+//        });
+//
+//        $this->friendModel = m::mock(FriendModel::class, function ($mock) {
+//            $mock->shouldReceive('getName')
+//                ->andReturn(1);
+//
+//            $mock->shouldReceive('getAge')
+//                ->andReturn('18');
+//
+//            $mock->shouldReceive('getPhone')
+//                ->andReturn('0612345678');
+//
+//            $mock->shouldReceive('getLocation')
+//                ->andReturn("Amsterdam");
+//
+//            $mock->shouldReceive('getToken')
+//                ->andReturn('12345a');
+//
+//            $mock->shouldReceive('getUser')
+//                ->andReturn($this->userModel);
+//
+//            $mock->shouldReceive('setUser')
+//                ->with($this->userModel)
+//                ->andReturn($mock);
+//        });
+//
+//        $this->userRepository = m::mock(IUserRepository::class, function ($mock) {
+//            $mock->shouldReceive('findByApiToken')
+//                ->with('12345a')
+//                ->andReturn($this->userModel);
+//        });
+//
+//        $this->userRepositoryNotFound = m::mock(IUserRepository::class, function ($mock) {
+//            $mock->shouldReceive('findByApiToken')
+//                ->with('12345a')
+//                ->andReturn(null);
+//        });
+//
+//        $this->signUpNotifyService = m::mock(IFriendSignUpNotifyService::class, function ($mock) {
+//            $mock->shouldReceive('getMailable')
+//                ->with(FriendModel::class);
+//
+//            $mock->shouldReceive('send')
+//                ->with(Mail::to('exampleTest')->send());
+//
+//        });
+//        parent::setUp(); // TODO: Change the autogenerated stub
+//    }
+//
+//    public function testValidMailableTest()
+//    {
+//        $service = new FriendSignUpService($this->signUpNotifyService, $this->userRepository);
+//        $service->signUp($this->friendModel);
+//    }
+//
+//}

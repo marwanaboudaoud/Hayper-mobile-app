@@ -1,0 +1,92 @@
+.weekplanning {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__date {
+        display: flex;
+        flex-direction: row;
+        align-items:center;
+        position: fixed;
+        right: 2.5rem;
+        z-index: 5;
+
+        &-fixed {
+            position: relative;
+        }
+    }
+
+    &__cities {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: start;
+        align-self: center;
+        background: white;
+    }
+
+    &__city {
+        background: white;
+        padding: 1.5rem 2rem;
+        transition: 500ms;
+        border-radius: 0;
+        cursor: pointer;
+
+        &-active {
+            background:linear-gradient(90deg, #F58422 0%, #FBB541 100%);
+            color: white;
+            border-radius: 10px;
+            transform: scale(1.1);
+        }
+    }
+
+
+    &__button {
+        background: white;
+        height: 48px;
+        width: 50px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        cursor: pointer;
+
+        &-right {
+            margin-left : .20rem;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+
+            img {
+                transform: rotate(180deg);
+            }
+        }
+
+        &-disabled {
+            cursor: not-allowed;
+        }
+
+        &-left {
+            margin-right : .20rem;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+
+        }
+    }
+
+    &__bold {
+        font-weight: 600;
+    }
+
+    &__currentDate {
+        font-size:20px;
+        background: white;
+        padding: 1rem 2rem;
+    }
+
+    &__header {
+        margin-top: 0;
+    }
+
+
+    
+}

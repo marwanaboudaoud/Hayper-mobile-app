@@ -1,0 +1,17 @@
+{
+   "name": "Php Interface",
+   "out": "app/Src/{{ $name }}.php",
+   "params": {
+        "myParam": "optional"
+   }
+}
+---
+<?php
+
+namespace {{ Format::getNamespace($path) }};
+
+interface {{ Format::baseName($name) }}
+{
+
+}
+

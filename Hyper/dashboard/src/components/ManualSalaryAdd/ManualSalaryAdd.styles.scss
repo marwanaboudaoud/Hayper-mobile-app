@@ -1,0 +1,57 @@
+.manualSalary {
+    padding: 2rem 0;
+    padding-bottom: 0;
+    border-top: 1px solid #E5E5E5;
+    width: 100%;
+    margin: 0 !important;
+
+    &__buttons {
+        display: flex;
+        // top: 5px;
+        // right: 0px;
+        justify-content: space-evenly;
+
+        &--btn {
+            background: none;
+            outline: none;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 20px;
+
+            &.success {
+                background: rgba(71, 100, 46, 0.1);
+            }
+
+            &.cancel {
+                background: rgba(235, 87, 87, 0.1);
+            }
+        }
+    }
+
+    &__add {
+
+        border-top: 1px solid #E5E5E5;
+
+        &--btn {
+            background: none;
+            border: none;
+            outline: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem auto;
+        }
+
+        &--plus {
+            display: block;
+            background: url("../../assets/img/icons/plus.svg"), linear-gradient(90deg, #F58422 0%, #FBB541 100%);
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 20px;
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+    }
+}

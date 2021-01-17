@@ -1,0 +1,3123 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Sample App API swagger documentation",
+        "description": "This is a API Documentation for Hyper",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Returns a JWT token",
+                "description": "Login api",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "Login Doc",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Login Doc",
+                                        "type": "password"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "info@holygrow.nl",
+                                    "password": "123456"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "404": {
+                        "description": "User not found!"
+                    },
+                    "403": {
+                        "description": "User not active!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                }
+            }
+        },
+        "/api/forgot-password": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Send a request for forgot password",
+                "description": "Reset password",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "Forgot password doc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "info@holygrow.nl"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "404": {
+                        "description": "User not found!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                }
+            }
+        },
+        "/api/reset-password": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Send a request for resetting a password",
+                "description": "Reset password",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "password": {
+                                        "description": "Reset password doc",
+                                        "type": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Reset password doc",
+                                        "type": "password"
+                                    },
+                                    "token": {
+                                        "description": "Reset password doc",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "password": "123456",
+                                    "password_confirmation": "123456",
+                                    "token": "abc"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successful operation!"
+                    },
+                    "404": {
+                        "description": "Reset token not found!"
+                    },
+                    "409": {
+                        "description": "Token already used!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                }
+            }
+        },
+        "/api/availabilities/store": {
+            "post": {
+                "tags": [
+                    "Availabilities"
+                ],
+                "summary": "Store availability",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "description": "Availability store",
+                                        "type": "date"
+                                    },
+                                    "is_present": {
+                                        "description": "Availability store",
+                                        "type": "boolean"
+                                    },
+                                    "availability_shift_id": {
+                                        "description": "Availability store",
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "date": "2020-01-01",
+                                    "is_present": true,
+                                    "availability_shift_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/availabilities/{id}/update": {
+            "post": {
+                "tags": [
+                    "Availabilities"
+                ],
+                "summary": "Update availability",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "date"
+                                    },
+                                    "is_present": {
+                                        "type": "boolean"
+                                    },
+                                    "availability_shift_id": {
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "date": "2020-01-01",
+                                    "is_present": true,
+                                    "availability_shift_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/availabilities/search": {
+            "post": {
+                "tags": [
+                    "Availabilities"
+                ],
+                "summary": "Search availability",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "description": "Availability Search doc",
+                                        "type": "date"
+                                    },
+                                    "is_driver": {
+                                        "description": "Availability Search doc",
+                                        "type": "bool"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "date": "2019-01-01",
+                                    "is_driver": false
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/my-availability": {
+            "post": {
+                "tags": [
+                    "Availabilities"
+                ],
+                "summary": "Employee availability",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "start_date": {
+                                        "type": "date"
+                                    },
+                                    "end_date": {
+                                        "type": "date"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "start_date": "2020-01-01",
+                                    "end_date": "2020-01-01"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/countries": {
+            "get": {
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Get all countries",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/declarations/upload": {
+            "post": {
+                "tags": [
+                    "Declaration"
+                ],
+                "summary": "Upload one declaration",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "declaration_type": {
+                                        "type": "string"
+                                    },
+                                    "date_of_submission": {
+                                        "type": "date"
+                                    },
+                                    "location": {
+                                        "type": "string"
+                                    },
+                                    "amount_exc_vat": {
+                                        "type": "string"
+                                    },
+                                    "vat": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "declaration_type": "Boodschappen",
+                                    "date_of_submission": "2020-01-22",
+                                    "location": "Amsterdam",
+                                    "amount_exc_vat": 22.98,
+                                    "vat": 6,
+                                    "image": "path"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "409": {
+                        "description": "Employee not found!"
+                    },
+                    "422": {
+                        "description": "Token not set! Or data not valid!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/uploads/store": {
+            "post": {
+                "tags": [
+                    "Uploads"
+                ],
+                "summary": "Store document",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "document_name": {
+                                        "type": "string"
+                                    },
+                                    "body": {
+                                        "type": "file"
+                                    },
+                                    "document_type": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "document_name": "name of document",
+                                    "body": "",
+                                    "document_type": "te kiezen uit: CV,\n     *                      Contract, Identiteitskaart",
+                                    "user_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "404": {
+                        "description": "Employee not found"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/employees": {
+            "post": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Search for employee OR Get all ",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "description": "Employee doc",
+                                        "type": "int"
+                                    },
+                                    "limit": {
+                                        "description": "Employee doc",
+                                        "type": "int"
+                                    },
+                                    "order_by": {
+                                        "description": "Employee doc",
+                                        "type": "string"
+                                    },
+                                    "direction": {
+                                        "description": "Employee doc",
+                                        "type": "string"
+                                    },
+                                    "search": {
+                                        "description": "Employee doc",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "alias": {
+                                                    "description": "Employee doc",
+                                                    "type": "string"
+                                                },
+                                                "initials": {
+                                                    "description": "Employee doc",
+                                                    "type": "string"
+                                                },
+                                                "first_name": {
+                                                    "description": "Employee doc",
+                                                    "type": "string"
+                                                },
+                                                "insertion": {
+                                                    "description": "Employee doc",
+                                                    "type": "string"
+                                                },
+                                                "gender_id": {
+                                                    "description": "Employee doc",
+                                                    "type": "int"
+                                                },
+                                                "last_name": {
+                                                    "description": "Employee doc",
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "description": "Employee doc",
+                                                    "type": "string"
+                                                },
+                                                "phone": {
+                                                    "description": "Employee doc",
+                                                    "type": "string"
+                                                },
+                                                "has_drivers_license": {
+                                                    "description": "Employee doc",
+                                                    "type": "bool"
+                                                },
+                                                "date_of_birth": {
+                                                    "description": "Employee doc",
+                                                    "type": "date"
+                                                },
+                                                "country_of_birth": {
+                                                    "description": "Employee doc",
+                                                    "type": "int"
+                                                },
+                                                "nationality_id": {
+                                                    "description": "Employee doc",
+                                                    "type": "int"
+                                                },
+                                                "marital_status_id": {
+                                                    "description": "Employee doc",
+                                                    "type": "int"
+                                                },
+                                                "bsn": {
+                                                    "description": "Employee doc",
+                                                    "type": "int"
+                                                },
+                                                "iban": {
+                                                    "description": "Employee doc",
+                                                    "type": "string"
+                                                },
+                                                "income_tax": {
+                                                    "description": "Employee doc",
+                                                    "type": "bool"
+                                                },
+                                                "role_id": {
+                                                    "description": "Employee doc",
+                                                    "type": "int"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "page": "1",
+                                    "limit": "3",
+                                    "order_by": "id or related table using table . columnname",
+                                    "direction": "asc",
+                                    "search": {
+                                        "alias": "Rickert",
+                                        "initials": "rvw",
+                                        "first_name": "holy",
+                                        "insertion": "G",
+                                        "last_name": "Row",
+                                        "gender_id": 1,
+                                        "email": "info@holygrow.nl",
+                                        "phone": "0612345678",
+                                        "has_drivers_license": true,
+                                        "date_of_birth": "2019-01-01",
+                                        "country_of_birth_id": 1,
+                                        "nationality_id": 1,
+                                        "marital_status_id": 1,
+                                        "bsn": 2028382949,
+                                        "iban": "NL62 ATTA 12634654562",
+                                        "income_tax": true,
+                                        "role_id": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/employees/store": {
+            "post": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Create one employee",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "alias": {
+                                        "type": "string"
+                                    },
+                                    "initials": {
+                                        "type": "string"
+                                    },
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "insertion": {
+                                        "type": "string"
+                                    },
+                                    "gender_id": {
+                                        "type": "int"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "has_drivers_license": {
+                                        "type": "bool"
+                                    },
+                                    "date_of_birth": {
+                                        "type": "date"
+                                    },
+                                    "country_of_birth": {
+                                        "type": "int"
+                                    },
+                                    "nationality_id": {
+                                        "type": "int"
+                                    },
+                                    "marital_status_id": {
+                                        "type": "int"
+                                    },
+                                    "bsn": {
+                                        "type": "int"
+                                    },
+                                    "iban": {
+                                        "type": "string"
+                                    },
+                                    "income_tax": {
+                                        "type": "bool"
+                                    },
+                                    "role_id": {
+                                        "type": "int"
+                                    },
+                                    "works_on_project": {
+                                        "type": "array",
+                                        "items": {}
+                                    },
+                                    "address": {
+                                        "properties": {
+                                            "street": {
+                                                "type": "string"
+                                            },
+                                            "house_number": {
+                                                "type": "int"
+                                            },
+                                            "postcode": {
+                                                "type": "string"
+                                            },
+                                            "city": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "emergency_contact": {
+                                        "properties": {
+                                            "first_name": {
+                                                "type": "string"
+                                            },
+                                            "last_name": {
+                                                "type": "string"
+                                            },
+                                            "phone": {
+                                                "type": "string"
+                                            },
+                                            "relationship": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "contract": {
+                                        "properties": {
+                                            "start_date": {
+                                                "type": "string"
+                                            },
+                                            "end_date": {
+                                                "type": "string"
+                                            },
+                                            "trial_per_day": {
+                                                "type": "int"
+                                            },
+                                            "document_number": {
+                                                "type": "string"
+                                            },
+                                            "expiration_date": {
+                                                "type": "int"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "alias": "Rickert",
+                                    "initials": "rvw",
+                                    "first_name": "holy",
+                                    "insertion": "G",
+                                    "last_name": "Row",
+                                    "gender_id": 1,
+                                    "email": "info@holygrow.nl",
+                                    "phone": "0612345678",
+                                    "has_drivers_license": true,
+                                    "date_of_birth": "2019-01-01",
+                                    "country_of_birth_id": 1,
+                                    "nationality_id": 1,
+                                    "marital_status_id": 1,
+                                    "bsn": 2028382949,
+                                    "iban": "NL62 ATTA 12634654562",
+                                    "income_tax": true,
+                                    "role_id": 1,
+                                    "address": {
+                                        "street": "Kruisplein",
+                                        "house_number": 100,
+                                        "postcode": "3016PA",
+                                        "city": "Rotterdam"
+                                    },
+                                    "emergency_contact": {
+                                        "first_name": "Holy",
+                                        "last_name": "Ho",
+                                        "phone": "0612345678",
+                                        "relationship": "Bedrijf"
+                                    },
+                                    "contract": {
+                                        "start_date": "2020-02-19",
+                                        "end_date": "2020-10-20",
+                                        "trial_per_day": 20,
+                                        "document_number": "2qsdf3vgd",
+                                        "expiration_date": "2020-12-20"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "409": {
+                        "description": "Email allready exists!"
+                    },
+                    "422": {
+                        "description": "Token not set! Or data not valid!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/employees/activate": {
+            "post": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Activate employee",
+                "description": "Activate user when employee is created.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "password": {
+                                        "type": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "password"
+                                    },
+                                    "token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "password": "123456",
+                                    "password_confirmation": "123456",
+                                    "token": "abc"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successful operation!"
+                    },
+                    "409": {
+                        "description": "Activate token already used!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                }
+            }
+        },
+        "/api/employees/{id}": {
+            "get": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Get all employees",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/employees/{id}/update": {
+            "post": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Update employee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "alias": {
+                                        "type": "string"
+                                    },
+                                    "initials": {
+                                        "type": "string"
+                                    },
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "insertion": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "has_drivers_license": {
+                                        "type": "bool"
+                                    },
+                                    "date_of_birth": {
+                                        "type": "date"
+                                    },
+                                    "country_of_birth": {
+                                        "type": "int"
+                                    },
+                                    "nationality_id": {
+                                        "type": "int"
+                                    },
+                                    "marital_status_id": {
+                                        "type": "int"
+                                    },
+                                    "bsn": {
+                                        "type": "int"
+                                    },
+                                    "iban": {
+                                        "type": "string"
+                                    },
+                                    "role_id": {
+                                        "type": "int"
+                                    },
+                                    "gender_id": {
+                                        "type": "int"
+                                    },
+                                    "address": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "int"
+                                            },
+                                            "street": {
+                                                "type": "string"
+                                            },
+                                            "house_number": {
+                                                "type": "int"
+                                            },
+                                            "postcode": {
+                                                "type": "string"
+                                            },
+                                            "city": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "emergency_contact": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "int"
+                                            },
+                                            "first_name": {
+                                                "type": "string"
+                                            },
+                                            "last_name": {
+                                                "type": "string"
+                                            },
+                                            "phone": {
+                                                "type": "string"
+                                            },
+                                            "relationship": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "alias": "Rickert",
+                                    "initials": "rvw",
+                                    "first_name": "holy",
+                                    "insertion": "G",
+                                    "last_name": "Row",
+                                    "email": "info@holygrow.nl",
+                                    "phone": "0612345678",
+                                    "has_drivers_license": true,
+                                    "date_of_birth": "2019-01-01",
+                                    "country_of_birth_id": 1,
+                                    "nationality_id": 1,
+                                    "marital_status_id": 1,
+                                    "iban": "NL62 ATTA 12634654562",
+                                    "income_tax": true,
+                                    "role_id": 1,
+                                    "gender_id": 1,
+                                    "address": {
+                                        "id": 1,
+                                        "street": "Kruisplein",
+                                        "house_number": 100,
+                                        "postcode": "3016PA",
+                                        "city": "Rotterdam"
+                                    },
+                                    "emergency_contact": {
+                                        "id": 1,
+                                        "first_name": "Holy",
+                                        "last_name": "Ho",
+                                        "phone": "0612345678",
+                                        "relationship": "Bedrijf"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "409": {
+                        "description": "Email allready exists!"
+                    },
+                    "422": {
+                        "description": "Token not set! Or data not valid!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/employees/export-generate": {
+            "post": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Generate csv export",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "order_by": {
+                                        "type": "string"
+                                    },
+                                    "direction": {
+                                        "type": "string"
+                                    },
+                                    "search": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "alias": {
+                                                    "type": "string"
+                                                },
+                                                "initials": {
+                                                    "type": "string"
+                                                },
+                                                "first_name": {
+                                                    "type": "string"
+                                                },
+                                                "insertion": {
+                                                    "type": "string"
+                                                },
+                                                "gender_id": {
+                                                    "type": "int"
+                                                },
+                                                "last_name": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "phone": {
+                                                    "type": "string"
+                                                },
+                                                "has_drivers_license": {
+                                                    "type": "bool"
+                                                },
+                                                "date_of_birth": {
+                                                    "type": "date"
+                                                },
+                                                "country_of_birth": {
+                                                    "type": "int"
+                                                },
+                                                "nationality_id": {
+                                                    "type": "int"
+                                                },
+                                                "marital_status_id": {
+                                                    "type": "int"
+                                                },
+                                                "bsn": {
+                                                    "type": "int"
+                                                },
+                                                "iban": {
+                                                    "type": "string"
+                                                },
+                                                "income_tax": {
+                                                    "type": "bool"
+                                                },
+                                                "role_title": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "order_by": "id",
+                                    "direction": "asc",
+                                    "search": {
+                                        "alias": "Rickert",
+                                        "initials": "rvw",
+                                        "first_name": "holy",
+                                        "insertion": "G",
+                                        "last_name": "Row",
+                                        "gender_id": 1,
+                                        "email": "info@holygrow.nl",
+                                        "phone": "0612345678",
+                                        "has_drivers_license": true,
+                                        "date_of_birth": "2019-01-01",
+                                        "country_of_birth_id": 1,
+                                        "nationality_id": 1,
+                                        "marital_status_id": 1,
+                                        "bsn": 2028382949,
+                                        "iban": "NL62 ATTA 12634654562",
+                                        "income_tax": true,
+                                        "role_title": "Admin"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/contracts": {
+            "post": {
+                "tags": [
+                    "Contracts"
+                ],
+                "summary": "Search for contracts OR Get all ",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "type": "int"
+                                    },
+                                    "limit": {
+                                        "type": "int"
+                                    },
+                                    "order_by": {
+                                        "type": "string"
+                                    },
+                                    "direction": {
+                                        "type": "string"
+                                    },
+                                    "search": {
+                                        "type": "object",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "int"
+                                                },
+                                                "start_date": {
+                                                    "type": "string"
+                                                },
+                                                "end_date": {
+                                                    "type": "string"
+                                                },
+                                                "employee_name": {
+                                                    "type": "string"
+                                                },
+                                                "contract_in_months": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "page": "1",
+                                    "limit": "3",
+                                    "order_by": "id",
+                                    "direction": "asc",
+                                    "search": {
+                                        "id": 1,
+                                        "start_date": "",
+                                        "end_date": "",
+                                        "employee_name": "",
+                                        "contract_in_months": ""
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/contracts/store": {
+            "post": {
+                "tags": [
+                    "Contracts"
+                ],
+                "summary": "Store contracts",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "start_date": {
+                                        "type": "date"
+                                    },
+                                    "end_date": {
+                                        "type": "date"
+                                    },
+                                    "trial_per_day": {
+                                        "type": "date"
+                                    },
+                                    "user": {
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "start_date": "21-10-2020",
+                                    "end_date": "21-10-2020",
+                                    "trial_per_day": "2",
+                                    "user": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/contracts/create-or-delete": {
+            "post": {
+                "tags": [
+                    "Contracts"
+                ],
+                "summary": "Delete contract or extend a contract",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "is_extended": {
+                                        "type": "bool"
+                                    },
+                                    "contract_id": {
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "is_extended": true,
+                                    "contract_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/contracts/download-contract": {
+            "post": {
+                "tags": [
+                    "Contracts"
+                ],
+                "summary": "Download a contract",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "contract_id": {
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "contract_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/expiring-contracts": {
+            "post": {
+                "tags": [
+                    "Contracts"
+                ],
+                "summary": "All Expiring contracts",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "order_by": {
+                                        "type": "string"
+                                    },
+                                    "direction": {
+                                        "type": "asc"
+                                    },
+                                    "trial_per_day": {
+                                        "type": "date"
+                                    },
+                                    "user": {
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "order_by": "employee_name",
+                                    "direction": "asc"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/signing-up-my-friend/": {
+            "post": {
+                "tags": [
+                    "Friend"
+                ],
+                "summary": "Sign up a friend",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "age": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "location": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Your friendsname",
+                                    "age": "18",
+                                    "phone": "Your friends phonenumber",
+                                    "location": "Location"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "409": {
+                        "description": "Employee not found!"
+                    },
+                    "422": {
+                        "description": "Token not set! Or data not valid!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/genders": {
+            "get": {
+                "tags": [
+                    "Genders"
+                ],
+                "summary": "Get all genders",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/maritalstatuses": {
+            "get": {
+                "tags": [
+                    "Marital Statuses"
+                ],
+                "summary": "Get all marital statuses",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/nationalities": {
+            "get": {
+                "tags": [
+                    "Nationlities"
+                ],
+                "summary": "Get all nationalities",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/partners": {
+            "post": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Search for partners OR Get all ",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "type": "int"
+                                    },
+                                    "limit": {
+                                        "type": "int"
+                                    },
+                                    "order_by": {
+                                        "type": "string"
+                                    },
+                                    "direction": {
+                                        "type": "string"
+                                    },
+                                    "search": {
+                                        "type": "object",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "int"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "address": {
+                                                    "type": "string"
+                                                },
+                                                "house_number": {
+                                                    "type": "string"
+                                                },
+                                                "postcode": {
+                                                    "type": "string"
+                                                },
+                                                "city": {
+                                                    "type": "string"
+                                                },
+                                                "phone": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "page": "1",
+                                    "limit": "3",
+                                    "order_by": "id",
+                                    "direction": "asc",
+                                    "search": {
+                                        "id": 1,
+                                        "name": "",
+                                        "address": "",
+                                        "house_number": "",
+                                        "city": "",
+                                        "phone": ""
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/partners/store": {
+            "post": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Register a partner",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "house_number": {
+                                        "type": "string"
+                                    },
+                                    "postcode": {
+                                        "type": "string"
+                                    },
+                                    "city": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "companyName",
+                                    "address": "Company address",
+                                    "house_number": "12",
+                                    "postcode": "8224 df",
+                                    "city": "Row",
+                                    "phone": "01012345678"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Oops something went wrong"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/partners/{id}": {
+            "get": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Find a partner",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/partners/{id}/update": {
+            "post": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Update partner",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "house_number": {
+                                        "type": "string"
+                                    },
+                                    "postcode": {
+                                        "type": "string"
+                                    },
+                                    "city": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "het oppertje",
+                                    "address": "lindelaan",
+                                    "house_number": "99",
+                                    "postcode": "2121XV",
+                                    "city": "Almere",
+                                    "phone": "234535252"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/partners/{id}/delete": {
+            "post": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Delete partner",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/projects": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Search for Projects OR Get all ",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "type": "int"
+                                    },
+                                    "limit": {
+                                        "type": "int"
+                                    },
+                                    "order_by": {
+                                        "type": "string"
+                                    },
+                                    "direction": {
+                                        "type": "string"
+                                    },
+                                    "search": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "active": {
+                                                    "type": "string"
+                                                },
+                                                "partner_id": {
+                                                    "type": "int"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "page": "1",
+                                    "limit": "3",
+                                    "order_by": "id",
+                                    "direction": "asc",
+                                    "search": {
+                                        "name": "",
+                                        "active": "",
+                                        "partner_id": ""
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/projects/{id}": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Find project",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/projects/store": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Store projects",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "is_active": {
+                                        "type": "boolean"
+                                    },
+                                    "partner_id": {
+                                        "type": "int"
+                                    },
+                                    "commission_rates": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "rate": {
+                                                    "type": "float"
+                                                },
+                                                "amount": {
+                                                    "type": "float"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Webshop school products",
+                                    "is_active": true,
+                                    "partner_id": 1,
+                                    "commission_rates": [
+                                        {
+                                            "rate": 1,
+                                            "amount": 1
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/projects/{id}/update": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Update projects",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "is_active": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Webshop school products",
+                                    "is_active": true,
+                                    "partner_id": 1,
+                                    "commission_rates": [
+                                        {
+                                            "rate": 1,
+                                            "amount": 1
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/projects/{id}/delete": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Delete project",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/roles": {
+            "post": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Search for roles OR Get all ",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "type": "int"
+                                    },
+                                    "limit": {
+                                        "type": "int"
+                                    },
+                                    "order_by": {
+                                        "type": "string"
+                                    },
+                                    "direction": {
+                                        "type": "string"
+                                    },
+                                    "search": {
+                                        "type": "object",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "int"
+                                                },
+                                                "title": {
+                                                    "type": "string"
+                                                },
+                                                "code_in_nmbrs": {
+                                                    "type": "int"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "page": "1",
+                                    "limit": "3",
+                                    "order_by": "id",
+                                    "direction": "asc",
+                                    "search": {
+                                        "id": 1,
+                                        "title": "",
+                                        "code_in_nmbrs": 100
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/roles/store": {
+            "post": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Store role",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "code_in_nmbrs": {
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "",
+                                    "code_in_nmbrs": 100
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "409": {
+                        "description": "Role already exists"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/roles/{id}/update": {
+            "post": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Store role",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "code_in_nmbrs": {
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "",
+                                    "code_in_nmbrs": 100
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "409": {
+                        "description": "Role already exists"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/roles/{id}/delete": {
+            "post": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Archive a role",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "409": {
+                        "description": "Role is currently in use"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/roles/{id}": {
+            "get": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Get roles by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/my-salaries": {
+            "post": {
+                "tags": [
+                    "Salaries"
+                ],
+                "summary": "Get my salary",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "start_date": {
+                                        "type": "date"
+                                    },
+                                    "end_date": {
+                                        "type": "date"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "start_date": "2019-01-01",
+                                    "end_date": "2020-01-01"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/salaries": {
+            "post": {
+                "tags": [
+                    "Salaries"
+                ],
+                "summary": "Get salaries",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "type": "int"
+                                    },
+                                    "limit": {
+                                        "type": "int"
+                                    },
+                                    "order_by": {
+                                        "type": "string"
+                                    },
+                                    "direction": {
+                                        "type": "string"
+                                    },
+                                    "salary": {
+                                        "properties": {
+                                            "filter": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "month": {
+                                                            "type": "int"
+                                                        },
+                                                        "year": {
+                                                            "type": "int"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        },
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "int"
+                                                },
+                                                "employee_name": {
+                                                    "type": "string"
+                                                },
+                                                "date": {
+                                                    "type": "string"
+                                                },
+                                                "heading": {
+                                                    "type": "string"
+                                                },
+                                                "description": {
+                                                    "type": "string"
+                                                },
+                                                "price": {
+                                                    "type": "float"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "page": "1",
+                                    "limit": "3",
+                                    "order_by": "id",
+                                    "direction": "asc",
+                                    "salary": {
+                                        "employee_name": "",
+                                        "date": "",
+                                        "heading": "",
+                                        "description": "",
+                                        "price": ""
+                                    },
+                                    "filter": {
+                                        "month": 1,
+                                        "year": 1973
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "404": {
+                        "description": "Salary not found!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/salaries/{id}": {
+            "get": {
+                "tags": [
+                    "Salaries"
+                ],
+                "summary": "Find salary",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "404": {
+                        "description": "Salary not found!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/salaries-manual/{salary_id}/store": {
+            "post": {
+                "tags": [
+                    "Salaries"
+                ],
+                "summary": "Store manual salary",
+                "parameters": [
+                    {
+                        "name": "salary_id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "date"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "float"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "date": "2020-01-01",
+                                    "description": "Lorem ipsum",
+                                    "price": "1.99"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "404": {
+                        "description": "Salary not found!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/salaries-manual/{salary_day_id}/delete": {
+            "post": {
+                "tags": [
+                    "Salaries"
+                ],
+                "summary": "Delete manual added salary row",
+                "parameters": [
+                    {
+                        "name": "salary_day_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "400": {
+                        "description": "Salary row not found"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/my-schedule": {
+            "post": {
+                "tags": [
+                    "Schedules"
+                ],
+                "summary": "Get my schedule",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "start_date": {
+                                        "type": "date"
+                                    },
+                                    "end_date": {
+                                        "type": "date"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "start_date": "Y-m-d",
+                                    "end_date": "Y-m-d"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/schedules": {
+            "post": {
+                "tags": [
+                    "Schedules"
+                ],
+                "summary": "Get all schedules per week",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "week": {
+                                        "type": "int"
+                                    },
+                                    "year": {
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "week": "1",
+                                    "year": "2020"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/schedules/store": {
+            "post": {
+                "tags": [
+                    "Schedules"
+                ],
+                "summary": "Store schedules",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "items": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "address": {
+                                                    "type": "string"
+                                                },
+                                                "postcode": {
+                                                    "type": "string"
+                                                },
+                                                "city": {
+                                                    "type": "string"
+                                                },
+                                                "date": {
+                                                    "type": "date"
+                                                },
+                                                "driver": {
+                                                    "type": "int"
+                                                },
+                                                "project_id": {
+                                                    "type": "int"
+                                                },
+                                                "availability_shift_id": {
+                                                    "type": "int"
+                                                },
+                                                "employees": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "int"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "items": [
+                                        {
+                                            "name": "Mrs. Novella Runolfsson",
+                                            "address": "Test address",
+                                            "postcode": "1628VJ",
+                                            "city": "Rotterdam",
+                                            "date": "2019-01-01",
+                                            "driver": 1,
+                                            "availability_shift_id": 1,
+                                            "project_id": 1,
+                                            "employees": [
+                                                1,
+                                                2,
+                                                3
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/schedules/{id}/update": {
+            "post": {
+                "tags": [
+                    "Schedules"
+                ],
+                "summary": "Store schedules",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "postcode": {
+                                        "type": "string"
+                                    },
+                                    "city": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "date"
+                                    },
+                                    "driver": {
+                                        "type": "int"
+                                    },
+                                    "project_id": {
+                                        "type": "int"
+                                    },
+                                    "availability_shift_id": {
+                                        "type": "int"
+                                    },
+                                    "employees": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "int"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Mrs. Novella Runolfsson",
+                                    "address": "Test address",
+                                    "postcode": "1628VJ",
+                                    "city": "Rotterdam",
+                                    "date": "2019-01-01",
+                                    "driver": 1,
+                                    "availability_shift_id": 1,
+                                    "project_id": 1,
+                                    "employees": [
+                                        1,
+                                        2,
+                                        3
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/schedules/{id}/delete": {
+            "post": {
+                "tags": [
+                    "Schedules"
+                ],
+                "summary": "Delete schedule",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/my-score": {
+            "post": {
+                "tags": [
+                    "Score"
+                ],
+                "summary": "Get my scores",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/subscriptions": {
+            "post": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Search for subscriptions OR Get all ",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page": {
+                                        "type": "int"
+                                    },
+                                    "limit": {
+                                        "type": "int"
+                                    },
+                                    "order_by": {
+                                        "type": "string"
+                                    },
+                                    "direction": {
+                                        "type": "string"
+                                    },
+                                    "search": {
+                                        "type": "object",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "project": {
+                                                    "type": "string"
+                                                },
+                                                "code": {
+                                                    "type": "string"
+                                                },
+                                                "duration_in_months": {
+                                                    "type": "string"
+                                                },
+                                                "title": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "page": "1",
+                                    "limit": "3",
+                                    "order_by": "id",
+                                    "direction": "asc",
+                                    "search": {
+                                        "id": "",
+                                        "project": "",
+                                        "code": "",
+                                        "duration_in_months": "",
+                                        "title": ""
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/subscriptions/store": {
+            "post": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Store subscription",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "gross_amount": {
+                                        "type": "double"
+                                    },
+                                    "duration_in_months": {
+                                        "type": "int"
+                                    },
+                                    "reward": {
+                                        "type": "float"
+                                    },
+                                    "is_bonus_calc": {
+                                        "type": "boolean"
+                                    },
+                                    "bw_code": {
+                                        "type": "string"
+                                    },
+                                    "project_id": {
+                                        "type": "int"
+                                    },
+                                    "starting_date": {
+                                        "type": "int"
+                                    },
+                                    "availability_shift_id": {
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Telegraaf",
+                                    "duration_in_months": 5,
+                                    "gross_amount": 120,
+                                    "reward": 15.55,
+                                    "is_bonus_calc": true,
+                                    "bw_code": "ABCD",
+                                    "project_id": 1,
+                                    "starting_date": "2020-01-01",
+                                    "availability_shift_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/subscriptions/{id}/update": {
+            "post": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Update subscription",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "gross_amount": {
+                                        "type": "double"
+                                    },
+                                    "duration_in_months": {
+                                        "type": "int"
+                                    },
+                                    "reward": {
+                                        "type": "float"
+                                    },
+                                    "is_bonus_calc": {
+                                        "type": "boolean"
+                                    },
+                                    "bw_code": {
+                                        "type": "string"
+                                    },
+                                    "project_id": {
+                                        "type": "int"
+                                    },
+                                    "starting_date": {
+                                        "type": "int"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Telegraaf",
+                                    "gross_amount": 120,
+                                    "duration_in_months": 5,
+                                    "reward": 15.55,
+                                    "is_bonus_calc": true,
+                                    "bw_code": "ABCD",
+                                    "project_id": 1,
+                                    "starting_date": "2020-01-01"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/subscriptions/{id}/delete": {
+            "post": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Delete subscription",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/subscriptions/{id}": {
+            "get": {
+                "tags": [
+                    "Subscription"
+                ],
+                "summary": "Get subscription by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation!"
+                    },
+                    "500": {
+                        "description": "Something went wrong!"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "api_key": {
+                "type": "apiKey",
+                "description": "First login and paste the response into this input.",
+                "name": "Api-key",
+                "in": "header"
+            }
+        }
+    }
+}

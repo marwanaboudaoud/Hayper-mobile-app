@@ -1,0 +1,34 @@
+{
+   "name": "Service Template",
+   "out": "app/Src/{{ $name }}.php",
+   "params": {
+        "extends": "optional",
+        "implements": "optional",
+        "constructor": "optional",
+        "constructorVar": "optional",
+        "uses": "optional"
+   }
+}
+---
+<?php
+
+ namespace {{ Format::getNamespace($path) }};
+
+ @if($uses)
+ use {{ Format::getNamespace($uses) }}\{{$constructor}};
+ @endif
+
+ class {{ Format::baseName($name) }} @if($extends)extends {{ $extends }}@endif @if($implements) implements {{$implements}} @endif
+ {
+     /**
+      * @var {{ $constructor }}
+      */
+     private $repo;
+
+ @if($constructor && $constructorVar)
+     public function __construct({{ $constructor }} {{ $constructorVar }})
+     {
+         $this->repo = {{ $constructorVar }};
+     }
+ @endif
+ }

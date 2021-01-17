@@ -1,0 +1,11 @@
+.container {
+    height: 100%;
+    width: 50%;
+}
+
+.image {
+    height: 100%;
+    width: 100%;
+    background: url('../../assets/img/login-header.png') center no-repeat;
+    background-size: cover;
+}

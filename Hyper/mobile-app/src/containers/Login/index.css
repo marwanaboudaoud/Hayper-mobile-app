@@ -1,0 +1,84 @@
+.title {
+  color: #f7972e;
+  font-size: 26px;
+  font-family: avenir;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 0;
+  font-weight: bold;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: url("../../assets/img/branding/heartbeat.svg") right bottom
+    no-repeat;
+  background-size: 120%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 0px 20px rgba(174, 185, 230, 0.2);
+  border-radius: 8px;
+  padding: 40px;
+}
+
+.intro {
+  margin-bottom: 80px;
+  margin-top: 0;
+  font-family: "Avenir";
+  font-weight: 500;
+  text-align: center;
+}
+
+.hyper-logo {
+  margin-top: 70px;
+}
+
+.loginBtn {
+  background: linear-gradient(90deg, #f58422 0%, #fbb541 100%);
+  box-shadow: 0px 3px 20px rgba(245, 130, 32, 0.2);
+  border: none;
+  width: 100%;
+  display: block;
+  border-radius: 50px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Avenir;
+  cursor: pointer;
+  height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.loginBtn:focus{
+  outline: none;
+}
+
+.loginSpan {
+  color: white;
+  outline: none;
+  border: none;
+  background: none;
+  margin-top: 10px;
+}
+
+.forgotten {
+  color: #f7972e;
+  font-size: 14px;
+  text-decoration-line: underline;
+  text-align: left;
+  margin-left: 80px;
+  font-family: Avenir;
+}

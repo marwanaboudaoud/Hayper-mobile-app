@@ -1,0 +1,37 @@
+.pagination {
+    display: inline-block;
+    padding: 0.25rem 1.25rem;
+    border-radius: 8px;
+    background: white;
+    li {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        margin-left: .25rem;
+        &:hover {
+            background: rgba($logo-green,0.1);
+            color: $logo-green;
+        }
+        a {
+            color: $dark-grey;
+            border-radius: 6px;
+            margin: 0 0.25rem;
+            text-decoration: none;
+
+        }
+    }
+
+    &__arrowLeft {
+        transform: rotate(0deg);
+    }
+
+    &__arrowRight {
+        transform: rotate(180deg);
+    }
+
+    &__active {
+        background: rgba($logo-green,0.1);
+        color: $logo-green;
+    }
+
+}

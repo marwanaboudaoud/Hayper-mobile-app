@@ -1,0 +1,53 @@
+.menuContainer {
+  background: linear-gradient(180deg, #f58422 0%, #fbb541 100%);
+  padding-bottom: 250px;
+}
+
+.menuItem {
+  color: white !important;
+  font-size: 14px;
+  text-align: right;
+  padding: 0px !important;
+  font-family: Avenir;
+}
+
+.menuItem:hover {
+  border-right: 5px solid white;
+  background-color: #f7983e;
+  margin-left: 20px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.menuImg {
+  padding: 20px;
+}
+
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.logo {
+  margin-top: 20px;
+}
+
+.x {
+  margin: 20px 20px 0px 0px;
+}
+
+.menuIcon {
+  border: none !important;
+  box-shadow: 0px 0px 20px rgba(174, 185, 230, 0.2);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: inherit;
+  background-clip: content-box;
+  position: fixed;
+  right: 15px;
+  top: 20px;
+  &:focus {
+    outline: none;
+  }
+}

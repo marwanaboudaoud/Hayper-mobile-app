@@ -1,0 +1,31 @@
+.manualSalaryRow {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #E5E5E5;
+    position: relative;
+    padding: 0 20px !important;
+
+    &__loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    p {
+        flex: 1;
+    }
+
+    p:nth-child(2) {
+        flex: 6;
+    }
+
+    &__removeBtn {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        outline: none;
+        border: none;
+        background: none;
+    }
+}

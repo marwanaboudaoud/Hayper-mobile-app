@@ -1,0 +1,15 @@
+{
+   "name": "Repository Template",
+   "out": "app/Src/{{ $name }}.php",
+   "params": {
+        "implements": "optional"
+   }
+}
+---
+<?php
+
+ namespace {{ Format::getNamespace($path) }};
+
+ class {{ Format::baseName($name) }} @if($implements) implements {{$implements}} @endif
+ {
+ }

@@ -1,0 +1,5 @@
+{
+    "require": {
+        "skyronic/laravel-file-generator": "^0.1.11"
+    }
+}

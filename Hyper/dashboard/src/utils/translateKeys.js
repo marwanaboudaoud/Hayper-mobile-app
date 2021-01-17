@@ -1,0 +1,50 @@
+export const translateKeys = (name,newValue) => {
+let keys =[
+    {key:'id',translatedKey : newValue ? newValue : 'ID'},
+    {key:'name',translatedKey : newValue ? newValue : 'Naam'},
+    {key:'address',translatedKey : newValue ? newValue : 'Adres'},
+    {key:'first_name',translatedKey : newValue ? newValue : 'Voornaam'},
+    {key:'last_name',translatedKey : newValue ? newValue : 'Achternaam'},
+    {key:'first_name',translatedKey : newValue ? newValue : 'Voornaam'},
+    {key:'emergency_contact',translatedKey : newValue ? newValue : 'ICE- / Noodnummer'},
+    {key:'has_drivers_license',translatedKey : newValue ? newValue : 'Heeft Rijbewijs'},
+    {key:'date_of_birth',translatedKey : newValue ? newValue : 'Geboortedatum'},
+    {key:'nationality_id',translatedKey : newValue ? newValue : 'BSN'},
+    {key:'location',translatedKey : newValue ? newValue : 'Locatie'},
+    {key:'income_tax',translatedKey : newValue ? newValue : 'Loonheffingskorting'},
+    {key:'into_service',translatedKey : newValue ? newValue : 'Startdatum'},
+    {key:'duration_in_months',translatedKey : newValue ? newValue : 'Duur in maand'},
+    {key:'starting_date',translatedKey : newValue ? newValue : 'Startdatum'},
+    {key:'bonus',translatedKey : newValue ? newValue : 'Belonings'},
+    {key:'is_bonus_calc',translatedKey : newValue ? newValue : 'Bonus meegerekend'},
+    {key:'bw_code',translatedKey : newValue ? newValue : 'BW'},
+    {key:'house_number',translatedKey : newValue ? newValue : 'Huisnummer'},
+    {key:'partner_name',translatedKey : newValue ? newValue : 'Klantnaam'},
+    {key:'is_active',translatedKey : newValue ? newValue : 'Actief'},
+    {key:'postcode',translatedKey : newValue ? newValue : 'Postcode'},
+    {key:'city',translatedKey : newValue ? newValue : 'Stad'},
+    {key:'phone',translatedKey : newValue ? newValue : 'Telefoonnummer'},
+    {key:'January',translatedKey : newValue ? newValue : 'Januari'},
+    {key:'February',translatedKey : newValue ? newValue : 'Februari'},
+    {key:'March',translatedKey : newValue ? newValue : 'Maart'},
+    {key:'April',translatedKey : newValue ? newValue : 'April'},
+    {key:'May',translatedKey : newValue ? newValue : 'Mei'},
+    {key:'June',translatedKey : newValue ? newValue : 'Juni'},
+    {key:'July',translatedKey : newValue ? newValue : 'Juli'},
+    {key:'August',translatedKey : newValue ? newValue : 'Augustus'},
+    {key:'September',translatedKey : newValue ? newValue : 'September'},
+    {key:'October',translatedKey : newValue ? newValue : 'Oktober'},
+    {key:'November',translatedKey : newValue ? newValue : 'November'},
+    {key:'December',translatedKey : newValue ? newValue : 'December'},
+    {key:'title',translatedKey : newValue ? newValue : 'Titel'},
+    {key:'code_in_nmbrs',translatedKey : newValue ? newValue : 'Code in NMBRS'},
+    {key:'date',translatedKey : newValue ? newValue : 'Datum'},
+    {key:'employee_name',translatedKey : newValue ? newValue : 'Werknemer'},
+    {key:'Forbidden',translatedKey : newValue ? newValue : 'U heeft geen toegang tot dit portaal.'},
+];
+
+const foundKey = keys.find(key => key.key === name);
+if(foundKey){
+    return foundKey.translatedKey
+} return name;
+}

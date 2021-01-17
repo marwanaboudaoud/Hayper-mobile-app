@@ -1,0 +1,42 @@
+{
+    "name": "skyronic/laravel-file-generator",
+    "description": "Laravel package to help you automate creation of files. Build your own custom generators like 'artisan make:model'.",
+    "type": "library",
+    "keywords": ["laravel"],
+    "license": "MIT",
+    "authors": [{
+        "name": "Anirudh Sanjeev",
+        "email": "skyronic@gmail.com"
+    }],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/support": "^5.4|^6.0",
+        "illuminate/console": "^5.4|^6.0",
+        "illuminate/view": "^5.4|^6.0",
+        "illuminate/filesystem": "^5.4|^6.0",
+        "symfony/finder": "^4.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "~0.9",
+        "phpunit/phpunit": "~4.0|~5.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Skyronic\\FileGenerator\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Skyronic\\FileGenerator\\FileGeneratorServiceProvider"
+            ]
+        }
+    }
+}

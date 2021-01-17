@@ -1,0 +1,206 @@
+.popupHeader {
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    font-size: 18px;
+    text-align: left;
+    padding: 5px;
+    font-weight: bold;
+    height: 50px;
+  }
+
+  .close {
+    background: none;
+    border: none;
+    position: absolute;
+    display: block;
+    margin-top: 5px;
+    line-height: 20px;
+    right: 6px;
+    font-size: 34px;
+  }
+
+  .cancelBtn {
+    background-color: white;
+    width: 48%;
+    border-radius: 35px;
+    height: 40px;
+    border: 1px solid #f2f2f2;
+    box-shadow: 0px 0px 20px rgba(174, 185, 230, 0.2);
+    padding: 15px 10px 35px 10px;
+    &:focus{
+      outline: none;
+    }
+  }
+  
+  .cancelBtnText {
+    color: orange;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Avenir;
+  }
+  
+  .confirmBtn {
+    background: linear-gradient(90deg, #f58422 0%, #fbb541 100%);
+    width: 48%;
+    border-radius: 35px;
+    height: 40px;
+    border: none;
+    box-shadow: 0px 3px 20px rgba(245, 130, 32, 0.2);
+    padding: 15px 10px 35px 10px;
+    &:focus{
+      outline: none;
+    }
+  }
+  
+  .confirmBtnText {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Avenir;
+  }
+
+  .underline {
+    height: 1px;
+    background-color: #47642e;
+    opacity: 0.1;
+    width: 100%;
+    border: none;
+    margin-top: 0;
+  }
+
+  .bodyTitles{
+    font-family: Avenir;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  .checkboxContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+  }
+
+  .checkboxContainer2{
+    display: flex;
+    justify-content: space-between;
+    width: 82%;
+  }
+
+  .checkbox {
+    display: inline-flex;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox > input {
+    height: 25px;
+    width: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    box-shadow: 0px 3px 20px rgba(245, 130, 32, 0.2);
+    border-radius: 8px;
+    outline: none;
+    transition-duration: 0.3s;
+    background-color: white;
+    cursor: pointer;
+    margin-right:5px;
+  }
+
+.checkbox > input:checked + span::before {
+    content: '\2713';
+    display: block;
+    text-align: center;
+    background: linear-gradient(90deg, #F58422 0%, #FBB541 100%);
+    color: white;
+    position: absolute;
+    left: 0.1rem;
+    top: 0.1rem;
+    width: 25px;
+    height: 25px;
+    border-radius: 8px;
+}
+
+.weekWrapper{
+    background-color: white;
+    margin-bottom: 6px;
+    box-shadow: 0px 0px 20px rgba(174, 185, 230, 0.2);
+    border-radius: 8px;
+    padding: 16px 16px 16px 15px;
+    color: #142407;
+    font-family: Avenir;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dayIcon {
+  width: 24px;
+    height: 100%;
+}
+
+.formDate{
+  color: #142407;
+  font-family: Avenir;
+  font-size: 14px;
+}
+
+.formDate::first-letter{
+  text-transform: uppercase;
+}
+
+.date{
+  font-family: Avenir;
+  font-size: 15px;
+  color: #142407;
+  font-weight:600;
+  width: 65%;
+}
+
+.date::first-letter{
+  text-transform: uppercase;
+}
+
+.successPopupContainer{
+  display: flex;
+  height: 60vh;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.spinnerContainer{
+  height: 54vh; 
+  display: flex; 
+  justify-content: center; 
+  margin-top: 40px;
+}
+
+.successImg{
+  width:40%;
+}
+
+.successHeader{
+  color: #219653;
+  font-family: Avenir;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 1.2rem;
+}
+
+.failedHeader{
+  color: #EB5757;
+  font-family: Avenir;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 1.2rem;
+}
+
+.successText{
+font-family: Avenir;
+font-size: 14px;
+color: #142407;
+}
+
+
